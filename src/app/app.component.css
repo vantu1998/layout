@@ -1,0 +1,42 @@
+.logo {
+  width: 120px;
+  height: 31px;
+  background-color: white;
+  margin:0 30px 16px 0;
+  float: left;
+  font-size: 30px;
+  font-weight: 600;
+  color: rgb(114, 36, 187);
+}
+
+
+.header-menu {
+  line-height: 64px;
+}
+
+.sider-menu {
+  height: 100%;
+  border-right: 0;
+}
+
+.inner-layout {
+  padding: 24px;
+}
+
+nz-breadcrumb {
+  margin: 16px 0;
+}
+
+nz-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 280px;
+}
+
+.header{
+  background-color: white;
+}
+
+.app-layout{
+  height: 100vh;
+}
