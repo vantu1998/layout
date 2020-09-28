@@ -16,6 +16,7 @@ export class WelcomeComponent implements OnInit {
     this.filterList();
   }
   fieldList = [];
+  searchList = SEARCH_LIST;
 
   addSearchControl(): void {
     this.fieldList.push(SEARCH_LIST);
@@ -27,17 +28,21 @@ export class WelcomeComponent implements OnInit {
       map(data => data.map(item => item.field))
     ).subscribe(data => {
       // console.log(data)
-      this.fieldList.map((list) => {
-        let l = list.map((item, i) => {
-          console.log(data.indexOf(item.field))
-          if (data.indexOf(item.field)!== -1) {
+      this.fieldList.map((list, i) => {
+        const index = this.findIndex(data[i]);
+        const l = list.map((item) => {
+          console.log(data.indexOf(item.field));
+          if (data.indexOf(item.field) !== -1) {
             item.selected = true;
           }
           return item;
         });
-        console.log(l)
+        console.log(l);
+        if(index !== -1){
+          l[index].selected = false;
+        }
         return l;
-      })
+      });
     });
   }
   createControl(): FormGroup {
@@ -48,7 +53,17 @@ export class WelcomeComponent implements OnInit {
     });
   }
 
-  remove(id) {
+  findIndex(label: string): number {
+    let index = -1;
+    this.searchList.forEach((item, i) => {
+      if (item.field === label) {
+        index = i;
+      }
+    });
+    console.log(index);
+    return index;
+  }
+  remove(id): void {
     this.searchForm.removeAt(id);
   }
   ngOnInit(): void {
