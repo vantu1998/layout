@@ -1,13 +1,39 @@
 <h3>Search Form</h3>
 <hr>
 <div class="row">
-    <div class="col-lg-12">
-        <button class="btn btn-primary mr-2">Search</button>
-        <button class="btn btn-primary">Add</button>
+  <div class="col-lg-12">
+    <button class="btn btn-primary mr-2">Search</button>
+    <button class="btn btn-primary" (click)="addSearchControl()">Add</button>
+  </div>
+</div>
+<div class="row mt-2" *ngFor="let control of searchForm.controls; let i = index">
+  <ng-container [formGroup]="control">
+    <div class="col-lg-3">
+      <select class="form-control" formControlName="field">
+        <ng-container *ngFor="let field of fieldList[i]">
+          <option *ngIf="!field.selected">{{field.field}}</option>
+        </ng-container>
+
+      </select>
     </div>
-    <div class="row">
-        <div class="col-3"></div>
-        <div class="col-4"></div>
-        <div class="col-3"></div>
+    <div class="col-lg-3">
+      <div class="d-flex  align-items-center">
+        <span>Value:</span>
+        <input class="form-control ml-2" type="text">
+      </div>
     </div>
+    <div class="col-lg-3">
+      <select class="form-control">
+        <option value="">Title</option>
+        <option value="">Title</option>
+        <option value="">Title</option>
+        <option value="">Title</option>
+        <option value="">Title</option>
+      </select>
+    </div>
+    <div class="col-lg-2">
+      <div class="btn btn-danger" (click)="remove(i)">Delete</div>
+    </div>
+  </ng-container>
+
 </div>
